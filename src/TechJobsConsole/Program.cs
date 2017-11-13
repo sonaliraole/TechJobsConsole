@@ -47,7 +47,9 @@ namespace TechJobsConsole
                         {
                             Console.WriteLine(item);
                         }
+                        Console.WriteLine("\n*** Total " + columnChoices[columnChoice] +" " + results.Count + "  ***  ");
                     }
+
                 }
                 else // choice is "search"
                 {
@@ -67,7 +69,8 @@ namespace TechJobsConsole
                     }
                     else
                     {
-                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        searchResults = JobData.FindByValue(columnChoice, searchTerm);
+                        //searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         PrintJobs(searchResults);
                     }
                 }
@@ -118,7 +121,19 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+
+            foreach (var author in someJobs)
+            {
+                Console.WriteLine("\n******* ");
+                foreach (var item in author)
+
+                {
+                    Console.WriteLine(item.Key + " : " + item.Value);
+                    
+                }
+                Console.WriteLine("******* ");
+            }
+            Console.WriteLine("\n Total Records Found : " + someJobs.Count);
         }
     }
 }
